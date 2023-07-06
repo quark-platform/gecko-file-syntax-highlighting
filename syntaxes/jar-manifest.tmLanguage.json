@@ -1,0 +1,86 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Jar Manifest",
+  "scopeName": "source.jar-manifest",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#preprocessor"
+    },
+    {
+      "include": "#jarDef"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "comment",
+          "match": "#\\s.*$"
+        },
+        {
+          "name": "keyword.control.directive.conditional.ifdef.macro",
+          "match": "#ifdef"
+        },
+        {
+          "name": "keyword.control.directive.conditional.ifndef.macro",
+          "match": "#ifndef"
+        },
+        {
+          "name": "keyword.control.directive.conditional.if.macro",
+          "match": "#if"
+        },
+        {
+          "name": "keyword.control.directive.conditional.endif.macro",
+          "match": "#endif"
+        },
+        {
+          "name": "entity.name.function.macro",
+          "match": "@[\\w]*@"
+        },
+        {
+          "name": "entity.name.function.macro",
+          "match": "#(?!\\s).*$"
+        }
+      ]
+    },
+    "jarDef": {
+      "begin": "\\[",
+      "end": "\\]",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.paren.open"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.paren.close"
+        }
+      },
+      "name": "expression.group",
+      "patterns": [
+        {
+          "name": "entity.name.tag",
+          "match": "\\w+"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.preprocessor",
+          "match": "\\*"
+        },
+        {
+          "name": "keyword.operator.chrome_registration",
+          "match": "%"
+        }
+      ]
+    }
+  }
+}

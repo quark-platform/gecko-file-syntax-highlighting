@@ -1,0 +1,35 @@
+{
+  "name": "gecko-jar-manifest-support",
+  "displayName": "Gecko Jar Manifest Support",
+  "description": "Provides language support for gekco's jar manifest files",
+  "publisher": "fushra",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "jar-manifest",
+        "aliases": [
+          "Jar Manifest",
+          "jar-manifest"
+        ],
+        "extensions": [
+          ".mn"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jar-manifest",
+        "scopeName": "source.jar-manifest",
+        "path": "./syntaxes/jar-manifest.tmLanguage.json"
+      }
+    ]
+  }
+}
