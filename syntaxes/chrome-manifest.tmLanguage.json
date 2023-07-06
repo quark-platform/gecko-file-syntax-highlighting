@@ -1,0 +1,144 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Chrome Manifest",
+  "scopeName": "source.chrome-manifest",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#manifest" },
+    { "include": "#component" },
+    { "include": "#contract" },
+    { "include": "#category" },
+    { "include": "#content" },
+    { "include": "#locale" },
+    { "include": "#skin" },
+    { "include": "#style" },
+    { "include": "#override" },
+    { "include": "#resource" }
+  ],
+  "repository": {
+    "comment": {
+      "match": "(?<comment>#\\s.*)$",
+      "name": "comment.line.chrome-manifest"
+    },
+    "manifest": {
+      "match": "(?<flag>manifest\\s)(?<path>[\\w\\./@]*)(\\s.+)?",
+      "captures": {
+        "1": {
+          "name": "keyword.other"
+        },
+        "2": {
+          "name": "string.unquoted.path"
+        },
+        "3": {
+          "patterns": [{ "include": "#flag" }]
+        }
+      }
+    },
+    "component": {
+      "match": "(?<flag>component\\s)(?<uuid>\\{[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}\\}\\s)(?<path>[\\w\\./@]*)(\\s.+)?",
+      "captures": {
+        "1": {
+          "name": "keyword.other"
+        },
+        "2": {
+          "name": "constant.other.regex"
+        },
+        "3": {
+          "name": "string.unquoted.path"
+        },
+        "4": {
+          "patterns": [{ "include": "#flag" }]
+        }
+      }
+    },
+    "flag": {
+      "match": "(?<flag>\\w+)(=)(?<value>(\\w+)|(?<uuid>\\{[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}\\})+)",
+      "captures": {
+        "1": {
+          "name": "keyword.other"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value"
+        },
+        "3": {
+          "name": "constant.other"
+        }
+      }
+    },
+    "contract": {
+      "match": "(?<flag>contract\\s)(?<path>@[\\w+/@]+;\\d+\\s)(?<uuid>\\{[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}\\})(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "string.unquoted" },
+        "3": { "name": "constant.other.regex" },
+        "4": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "category": {
+      "match": "(?<flag>category\\s)(?<name>[\\w@-]+\\s)(?<entryName>[\\w@]+\\s)(?<path>[-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "constant.other" },
+        "3": { "name": "constant.other" },
+        "4": { "name": "string.unquoted.path" },
+        "5": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "content": {
+      "match": "(?<flag>content\\s)(?<packageName>[\\w@]+\\s)(?<path>[-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "constant.other" },
+        "3": { "name": "string.unquoted.path" },
+        "4": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "locale": {
+      "match": "(?<flag>locale\\s)(?<packageName>[\\.\\w@-]+\\s)(?<locale>[\\w@-]+\\s)(?<path>[%-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "constant.other" },
+        "3": { "name": "constant.other" },
+        "4": { "name": "string.unquoted.path" },
+        "5": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "skin": {
+      "match": "(?<flag>skin\\s)(?<packageName>[\\w@]+\\s)(?<skinName>[\\w@]+\\s)(?<path>[-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "constant.other" },
+        "3": { "name": "constant.other" },
+        "4": { "name": "string.unquoted.path" },
+        "5": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "style": {
+      "match": "(?<flag>style\\s)(?<uriToStyle>[@\\w\\./:-]+\\s)(?<stylesheetURI>[@\\w\\./:-]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "string.unquoted.path" },
+        "3": { "name": "string.unquoted.path" },
+        "4": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "override": {
+      "match": "(?<flag>override\\s)(?<path>[-;:@\\w\\./]+\\s)(?<newPath>[-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "string.unquoted.path" },
+        "3": { "name": "string.unquoted.path" },
+        "4": { "patterns": [{ "include": "#flag" }] }
+      }
+    },
+    "resource": {
+      "match": "(?<flag>resource\\s)(?<alias>[\\w@]+\\s)(?<path>[-;:@\\w\\./]+)(\\s.+)?",
+      "captures": {
+        "1": { "name": "keyword.other" },
+        "2": { "name": "constant.other" },
+        "3": { "name": "string.unquoted.path" },
+        "4": { "patterns": [{ "include": "#flag" }] }
+      }
+    }
+  }
+}

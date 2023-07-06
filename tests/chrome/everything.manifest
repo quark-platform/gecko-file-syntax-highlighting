@@ -1,0 +1,42 @@
+# this line is a comment - you can put here whatever you want
+
+manifest subdirectory/foo.manifest
+manifest subdirectory/foo.manifest foo=bar
+manifest subdirectory/@ABC@/foo.manifest foo=bar
+
+component {00000000-0000-0000-0000-000000000000} components/@ABC@/mycomponent.js
+component {00000000-0000-0000-0000-000000000000} components/@ABC@/mycomponent.js foo=bar
+
+contract @foobar/mycontract;1 {00000000-0000-0000-0000-000000000000}
+contract @foobar/mycontract;1 {00000000-0000-0000-0000-000000000000} foo=bar
+contract @foobar/@ABC@/mycontract;1 {00000000-0000-0000-0000-000000000000} foo=bar
+
+category webextension-modules browser chrome://browser/content/ext-browser.json
+category app-startup nsBrowserGlue @mozilla.org/browser/browserglue;1 application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} application={aa3c5121-dab2-40e2-81ca-7ea25febc110}
+category @ABC@ @ABC@ @mozilla.org/@ABC@/browserglue;1 application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} application={aa3c5121-dab2-40e2-81ca-7ea25febc110}
+
+content packagename uri/to/files/
+content packagename uri/to/files/ foo=bar
+content @ABC@ uri/@to@/files/ foo=bar
+
+locale packagename localename uri/to/files/
+locale packagename localename uri/to/files/ foo=bar
+locale @packagename@ @localename@ uri/@to@/files/ foo=bar
+locale pdf.js @AB_CD@ %locale/pdfviewer/
+
+skin packagename skinname uri/to/files/ 
+skin packagename skinname uri/to/files/ foo=bar
+skin @packagename@ @skinname@ uri/@to@/files/ foo=bar
+
+style chrome://URI-to-style chrome://stylesheet-URI
+style chrome://URI-to-style chrome://stylesheet-URI foo=bar
+style chrome://@URI@-to-style chrome://@stylesheet@-URI foo=bar
+
+override chrome://package/type/original-uri.whatever new-resolved-URI
+override chrome://package/type/original-uri.whatever new-resolved-URI foo=bar
+override chrome://package/@type@/original-uri.whatever new-@resolved@-URI foo=bar
+
+resource aliasname uri/to/files/
+resource aliasname uri/to/files/ foo=bar
+resource @aliasname@ uri/@to@/files/ foo=bar
+

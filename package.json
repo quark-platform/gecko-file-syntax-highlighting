@@ -21,7 +21,18 @@
         "extensions": [
           ".mn"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./syntaxes/jar-manifest.language-configuration.json"
+      },
+      {
+        "id": "chrome-manifest",
+        "aliases": [
+          "Chrome Manifest",
+          "chrome-manifest"
+        ],
+        "extensions": [
+          ".manifest"
+        ],
+        "configuration": "./syntaxes/chrome-manifest.language-configuration.json"
       }
     ],
     "grammars": [
@@ -30,7 +41,16 @@
         "scopeName": "source.jar-manifest",
         "path": "./syntaxes/jar-manifest.tmLanguage.json",
         "embeddedLanguages": {
-          "meta.embeded.jar-manifest": "jar-manifest"
+          "meta.embedded.chrome-manifest": "chrome-manifest",
+          "source.chrome-manifest": "chrome-manifest"
+        }
+      },
+      {
+        "language": "chrome-manifest",
+        "scopeName": "source.chrome-manifest",
+        "path": "./syntaxes/chrome-manifest.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.chrome-manifest": "chrome-manifest"
         }
       }
     ]

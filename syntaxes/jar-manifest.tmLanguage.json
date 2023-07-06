@@ -3,15 +3,10 @@
   "name": "Jar Manifest",
   "scopeName": "source.jar-manifest",
   "patterns": [
-    {
-      "include": "#comment"
-    },
-    {
-      "include": "#substitution"
-    },
-    {
-      "include": "#directives"
-    }
+    { "include": "#comment" },
+    { "include": "#substitution" },
+    { "include": "#directives" },
+    { "include": "#chrome" }
   ],
   "repository": {
     "comment": {
@@ -227,6 +222,12 @@
           "name": "keyword.operator.jar-manifest"
         }
       ]
+    },
+    "chrome": {
+      "contentName": "meta.embedded.chrome-manifest",
+      "begin": "^%\\s+",
+      "end": "$",
+      "patterns": [{ "include": "source.chrome-manifest" }]
     }
   }
 }
