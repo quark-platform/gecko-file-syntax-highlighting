@@ -1,0 +1,40 @@
+@AB_CD@.jar:
+
+# This Source Code Form is subject to the terms of the Mozilla Public
+
+#define variable
+#define abc def
+#undef abc
+
+#ifndef MOZ_FENNEC
+#ifdef MOZ_FENNEC
+
+#if !defined(XP_WIN) && !defined(MOZ_FENNEC)
+#if variable
+#if !variable
+#if variable == string
+#if variable != string
+
+#elif !defined(XP_WIN) && !defined(MOZ_FENNEC)
+#elif variable
+#elif !variable
+#elif variable == string
+#elif variable != string
+
+#else
+#endif
+
+#include filename
+#include @var@.something
+
+#includesubst filename
+#includesubst @var@.something
+
+#expand This <__foo__> <__baz__> gets expanded
+
+#filter filter1 filter2 ... filterN
+#unfilter filter1 filter2 ... filterN
+
+#literal string
+
+#error string

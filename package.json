@@ -28,7 +28,10 @@
       {
         "language": "jar-manifest",
         "scopeName": "source.jar-manifest",
-        "path": "./syntaxes/jar-manifest.tmLanguage.json"
+        "path": "./syntaxes/jar-manifest.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embeded.jar-manifest": "jar-manifest"
+        }
       }
     ]
   }

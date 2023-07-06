@@ -4,81 +4,227 @@
   "scopeName": "source.jar-manifest",
   "patterns": [
     {
-      "include": "#keywords"
+      "include": "#comment"
     },
     {
-      "include": "#preprocessor"
+      "include": "#substitution"
     },
     {
-      "include": "#jarDef"
-    },
-    {
-      "include": "#operators"
+      "include": "#directives"
     }
   ],
   "repository": {
-    "preprocessor": {
+    "comment": {
+      "match": "(?<comment>#\\s.*)$",
+      "name": "comment.line.jar-manifest"
+    },
+    "substitution": {
+      "match": "@[\\w]*@",
+      "name": "variable.other"
+    },
+    "directives": {
       "patterns": [
         {
-          "name": "comment",
-          "match": "#\\s.*$"
+          "match": "(?<define>#define\\s+)(?<name>\\w+)(?<value>.*)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            },
+            "3": {
+              "name": "string.unquoted.jar-manifest"
+            }
+          }
         },
         {
-          "name": "keyword.control.directive.conditional.ifdef.macro",
-          "match": "#ifdef"
+          "match": "(?<undef>#undef\\s+)(?<name>\\w+)",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            }
+          }
         },
         {
-          "name": "keyword.control.directive.conditional.ifndef.macro",
-          "match": "#ifndef"
+          "match": "(?<ifndef>#ifndef\\s+)(?<name>\\w+)",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            }
+          }
         },
         {
-          "name": "keyword.control.directive.conditional.if.macro",
-          "match": "#if"
+          "match": "(?<ifdef>#ifdef\\s+)(?<name>\\w+)",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            }
+          }
         },
         {
-          "name": "keyword.control.directive.conditional.endif.macro",
-          "match": "#endif"
+          "match": "(?<elifdef>#elifdef\\s+)(?<name>\\w+)",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            }
+          }
         },
         {
-          "name": "entity.name.function.macro",
-          "match": "@[\\w]*@"
+          "match": "(?<elifndef>#elifndef\\s+)(?<name>\\w+)",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "name": "entity.name.function.jar-manifest"
+            }
+          }
         },
         {
-          "name": "entity.name.function.macro",
-          "match": "#(?!\\s).*$"
+          "match": "(?<if>#if\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.conditional.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "patterns": [{ "include": "#expressions" }]
+            }
+          }
+        },
+        {
+          "match": "(?<elif>#elif\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.conditional.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.conditional.jar-manifest"
+            },
+            "2": {
+              "patterns": [{ "include": "#expressions" }]
+            }
+          }
+        },
+        {
+          "match": "(?<include>#include\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "string.unquoted.jar-manifest"
+            }
+          }
+        },
+        {
+          "match": "(?<includesubst>#includesubst\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "string.unquoted.jar-manifest",
+              "patterns": [{ "include": "#substitution" }]
+            }
+          }
+        },
+        {
+          "match": "(?<expand>#expand\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "string.unquoted.jar-manifest",
+              "patterns": [
+                {
+                  "match": "__\\w+__",
+                  "name": "variable.other"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "(#(un)?filter\\s)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "2": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "3": {
+              "name": "string.unquoted.jar-manifest"
+            }
+          }
+        },
+        {
+          "match": "(?<literal>#literal\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "string.unquoted.jar-manifest"
+            }
+          }
+        },
+        {
+          "match": "(?<error>#error\\s+)(?<name>.+)$",
+          "name": "keyword.control.directive.jar-manifest",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.jar-manifest"
+            },
+            "2": {
+              "name": "string.unquoted.jar-manifest"
+            }
+          }
+        },
+        {
+          "match": "(?<else>#else)|(?<endif>#endif)",
+          "name": "keyword.control.directive.conditional.jar-manifest"
+        },
+        {
+          "match": "#\\w.*$",
+          "name": "keyword.control.directive.jar-manifest"
         }
       ]
     },
-    "jarDef": {
-      "begin": "\\[",
-      "end": "\\]",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.paren.open"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.paren.close"
-        }
-      },
-      "name": "expression.group",
+    "expressions": {
       "patterns": [
         {
-          "name": "entity.name.tag",
-          "match": "\\w+"
-        }
-      ]
-    },
-    "operators": {
-      "patterns": [
-        {
-          "name": "keyword.operator.preprocessor",
-          "match": "\\*"
+          "match": "\\b(defined)\\b",
+          "name": "keyword.control.directive.conditional.jar-manifest"
         },
         {
-          "name": "keyword.operator.chrome_registration",
-          "match": "%"
+          "match": "[a-zA-Z_$][\\w$]*",
+          "name": "variable.other"
+        },
+        {
+          "match": "==|!=|&&|!",
+          "name": "keyword.operator.jar-manifest"
         }
       ]
     }

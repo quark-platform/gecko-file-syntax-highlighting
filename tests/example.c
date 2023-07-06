@@ -2,7 +2,7 @@
 
 int main()
 {
-#if defined(TEST)
+#if defined(TEST) && defined(ABC)
   int a = 1;
 #else
   int a = 2;
