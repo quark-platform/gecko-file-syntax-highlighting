@@ -1,11 +1,11 @@
 {
-  "name": "gecko-jar-manifest-support",
-  "displayName": "Gecko Jar Manifest Support",
-  "description": "Provides language support for gekco's jar manifest files",
-  "publisher": "fushra",
-  "version": "0.0.1",
+  "name": "gecko-file-syntax-highlighting",
+  "displayName": "Gecko File Syntax Highlighting",
+  "description": "Syntax highlighting for parts of Gecko",
+  "publisher": "quark",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "*"
   },
   "categories": [
     "Programming Languages"
